@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Book;
+use App\Http\controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/books', App\Http\Controllers\BookController::class);

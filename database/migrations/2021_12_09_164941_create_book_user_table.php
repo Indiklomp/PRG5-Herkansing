@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecipesTable extends Migration
+class CreateBookUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateRecipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipes', function (Blueprint $table) {
-            $table->id();
+        Schema::create('book_user', function (Blueprint $table) {
+            $table->foreignId('book_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->primary(['user_id','book_id']);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateRecipesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists('book_user');
     }
 }

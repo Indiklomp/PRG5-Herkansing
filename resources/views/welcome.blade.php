@@ -38,7 +38,7 @@
 
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                   <h1>
-                      Rediscover you passion for books
+                      Rediscover your passion for books
                   </h1>
                 </div>
             </div>
