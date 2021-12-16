@@ -20,6 +20,11 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                {{ $book->genre }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <img src="{{ asset("storage/images/".$book['image']) }}"  height="800px" width="800px">
             </div>
         </div>

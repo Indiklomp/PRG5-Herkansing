@@ -42,6 +42,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Genre:</strong>
+                    <input type="text" name="genre" value="{{ $book->genre }}" class="form-control" placeholder="Genre">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Image:</strong>
                     <input type="file"  class="form-control" style="height:150px" name="image" value="{{$book->image}}" placeholder="Image">
                 </div>

@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add New schema</h2>
+                <h2>Add New Book</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('books.index') }}"> Back</a>
@@ -37,6 +37,12 @@
                 <div class="form-group">
                     <strong>Description:</strong>
                     <input type="text" name="description" class="form-control" placeholder="Description">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Genre:</strong>
+                    <input type="text" name="genre" class="form-control" placeholder="Genre">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -24,6 +24,7 @@
             <th>Title</th>
             <th>Image</th>
             <th>Details</th>
+            <th>Genre</th>
             <th>Action</th>
         </tr>
         @foreach($books as $book)
@@ -32,13 +33,14 @@
                 <td> {{$book['title']}} </td>
                 <td> <img src="{{ asset("storage/images/".$book['image']) }}"  height="100px" width="100px"> </td>
                 <td> {{$book ['description']}}</td>
+                <td> {{$book ['genre']}}</td>
                 <td>
                     <form action="{{ route('books.destroy',$book) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('books.show',$book) }}">Show</a>
                             <a class="btn btn-primary" href="{{ route('books.edit',$book) }}">Edit</a>
                         @csrf
                         @method('DELETE')
-                            <button type="submit" class="btn btn-danger">DESTROY</button>
+                            <button type="submit" class="btn btn-danger">end of story</button>
                     </form>
                 </td>
             </tr>

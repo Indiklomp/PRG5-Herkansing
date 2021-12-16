@@ -33,11 +33,13 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required',
             'image' => 'required',
-        ]);
+            'genre' => 'required',
+            ]);
 
         $book = new Book;
         $book->title = $request->input('title');
         $book->description = $request->input('description');
+        $book->genre = $request->input('genre');
         $book->image = $request->file('image')->storePublicly('images', 'public');
         $book->image = str_replace('images/', '', $book->image);
         $book->save();
@@ -65,6 +67,10 @@ class BookController extends Controller
             $book->title = $request->input('title');
         }
 
+        if (!$request->input('genre') == "") {
+            $book->genre = $request->input('genre');
+        }
+
         if (!$request->input('description') == "") {
             $book->description = $request->input('description');
         }
@@ -79,6 +85,9 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
+
+        return redirect()->route('books.index')
+            ->with('success', 'Book deleted successfully');
 
     }
 }
