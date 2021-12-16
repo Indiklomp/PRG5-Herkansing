@@ -7,9 +7,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                @can('book-create')
                     <a class="btn btn-success" href="{{ route('books.create') }}"> Create New book</a>
-                @endcan
             </div>
         </div>
     </div>
@@ -33,18 +31,14 @@
                 <td> {{$book['id']}}</td>
                 <td> {{$book['title']}} </td>
                 <td> <img src="{{ asset("storage/images/".$book['image']) }}"  height="100px" width="100px"> </td>
-                <td> {{$book ['excerpt']}}</td>
+                <td> {{$book ['description']}}</td>
                 <td>
                     <form action="{{ route('books.destroy',$book) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('books.show',$book) }}">Show</a>
-                        @can('book-edit')
                             <a class="btn btn-primary" href="{{ route('books.edit',$book) }}">Edit</a>
-                        @endcan
                         @csrf
                         @method('DELETE')
-                        @can('book-delete')
                             <button type="submit" class="btn btn-danger">DESTROY</button>
-                        @endcan
                     </form>
                 </td>
             </tr>

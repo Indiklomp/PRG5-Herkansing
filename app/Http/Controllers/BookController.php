@@ -37,7 +37,7 @@ class BookController extends Controller
 
         $book = new Book;
         $book->title = $request->input('title');
-        $book->excerpt = $request->input('excerpt');
+        $book->description = $request->input('description');
         $book->image = $request->file('image')->storePublicly('images', 'public');
         $book->image = str_replace('images/', '', $book->image);
         $book->save();
@@ -65,8 +65,8 @@ class BookController extends Controller
             $book->title = $request->input('title');
         }
 
-        if (!$request->input('excerpt') == "") {
-            $book->excerpt = $request->input('excerpt');
+        if (!$request->input('description') == "") {
+            $book->description = $request->input('description');
         }
 
 
