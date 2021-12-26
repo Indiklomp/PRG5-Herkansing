@@ -7,13 +7,28 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $title = 'My books';
-        $books = book::all();
 
-        return view('books/index', compact('title', 'books'));
+        $books = book::where([
+            ['title', '!=', Null],
+            ['genre', '!=', Null],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('title', 'LIKE', '%' . $term . '%')->get();
+                    $query->orWhere('genre', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy("id", "asc")
+            ->paginate(10);
+
+
+        return view('books.index', compact('title', 'books'));
     }
+
+
 
     public function show($id)
     {
