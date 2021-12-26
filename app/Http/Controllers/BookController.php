@@ -14,10 +14,14 @@ class BookController extends Controller
         $books = book::where([
             ['title', '!=', Null],
             ['genre', '!=', Null],
+            ['description', '!=', Null],
+            ['id', '!=', Null],
             [function ($query) use ($request) {
                 if (($term = $request->term)) {
                     $query->orWhere('title', 'LIKE', '%' . $term . '%')->get();
                     $query->orWhere('genre', 'LIKE', '%' . $term . '%')->get();
+                    $query->orWhere('description', 'LIKE', '%' . $term . '%')->get();
+                    $query->orWhere('id', 'LIKE', '%' . $term . '%')->get();
                 }
             }]
         ])
