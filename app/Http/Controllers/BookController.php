@@ -43,12 +43,14 @@ class BookController extends Controller
 
     public function create ()
     {
+        $this->authorize('books_create');
         return view('books.create');
     }
 
 
     public function store(Request $request)
     {
+        $this->authorize('books_create');
         $request->validate([
             'title' => 'required',
             'image' => 'required',
@@ -69,12 +71,14 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
+        $this->authorize('books_edit');
         return view('books.edit',compact('book'));
     }
 
 
     public function update(Request $request, Book $book)
     {
+        $this->authorize('books_edit');
         $book = Book::find($book->id);
         if (!$request->file('image') == "")
         {
@@ -103,6 +107,7 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        $this->authorize('books_delete');
         $book->delete();
 
         return redirect()->route('books.index')
