@@ -25,7 +25,9 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
+                @can ('books_create')
                     <a class="btn btn-success" href="{{ route('books.create') }}"> Create New book</a>
+                    @endcan
             </div>
         </div>
     </div>
@@ -56,10 +58,14 @@
                 <td>
                     <form action="{{ route('books.destroy',$book) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('books.show',$book) }}">Show</a>
+                        @can ('books_edit')
                             <a class="btn btn-primary" href="{{ route('books.edit',$book) }}">Edit</a>
+                        @endcan
                         @csrf
                         @method('DELETE')
+                        @can ('books_delete')
                             <button type="submit" class="btn btn-danger">end of story</button>
+                            @endcan
                     </form>
                 </td>
             </tr>
