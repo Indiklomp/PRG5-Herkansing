@@ -35,6 +35,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Releaseyear:</strong>
+                    <input type="text" name="releaseyear" class="form-control" placeholder="Releaseyear">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Description:</strong>
                     <input type="text" name="description" class="form-control" placeholder="Description">
                 </div>

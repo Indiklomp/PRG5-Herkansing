@@ -12,24 +12,26 @@ class BookController extends Controller
         $title = 'My books';
 
         $books = book::where([
-            ['title', '!=', Null],
+            ['releaseyear', '!=', Null],
             ['genre', '!=', Null],
+            ['title', '!=', Null],
             ['description', '!=', Null],
-            ['id', '!=', Null],
             [function ($query) use ($request) {
                 if (($term = $request->term)) {
+                    $query->orWhere('releaseyear', 'LIKE', '%' . $term . '%')->get();
                     $query->orWhere('title', 'LIKE', '%' . $term . '%')->get();
                     $query->orWhere('genre', 'LIKE', '%' . $term . '%')->get();
                     $query->orWhere('description', 'LIKE', '%' . $term . '%')->get();
-                    $query->orWhere('id', 'LIKE', '%' . $term . '%')->get();
                 }
             }]
         ])
             ->orderBy("id", "asc")
             ->paginate(10);
 
-
         return view('books.index', compact('title', 'books'));
+
+
+
     }
 
 
@@ -59,6 +61,7 @@ class BookController extends Controller
 
         $book = new Book;
         $book->title = $request->input('title');
+        $book->releaseyear = $request->input('releaseyear');
         $book->description = $request->input('description');
         $book->genre = $request->input('genre');
         $book->image = $request->file('image')->storePublicly('images', 'public');
@@ -80,8 +83,8 @@ class BookController extends Controller
     {
         $this->authorize('books_edit');
         $book = Book::find($book->id);
-        if (!$request->file('image') == "")
-        {
+
+        if (!$request->file('image') == "") {
             $book->image = $request->file('image')->storePublicly('images', 'public');
             $book->image = str_replace('images/', '', $book->image);
         }
@@ -96,6 +99,10 @@ class BookController extends Controller
 
         if (!$request->input('description') == "") {
             $book->description = $request->input('description');
+        }
+
+        if (!$request->input('releaseyear') == "") {
+            $book->releaseyear = $request->input('releaseyear');
         }
 
 

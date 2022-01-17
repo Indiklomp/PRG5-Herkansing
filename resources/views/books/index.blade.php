@@ -6,21 +6,36 @@
 
     <div>
         <div class="mx-auto float-right">
-            <div class="">
                 <form action="{{ route('books.index') }}" method="GET" role="search">
                     <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="submit">Search</button>
                                         <span class="fas fa-search"></span>
                             </span>
-                        <input type="text" class="form-control mr-2" name="term" placeholder="Name or Type" id="term">
+                        <input type="text" style="width: 33.3%"  name="term" placeholder="search or enter something" id="term">
                         <a href="{{ route('books.index') }}" class="mt-1"></a>
+
+
+
+                        <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semi-bold">
+                            <option value="genre" disabled selected> Genre</option>
+                            @foreach($books as $book)
+                            <option value="{{$book['genre']}}"> {{ $book['genre'] }}</option>
+                            @endforeach
+                        </select>
+
+
                     </div>
                 </form>
-            </div>
+
         </div>
     </div>
     <br>
+
+
+    <br>
+
+        <br>
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -41,19 +56,19 @@
 
 
         <tr>
-            <th>Number</th>
             <th>Title</th>
             <th>Image</th>
-            <th>Details</th>
+            <th>release-year</th>
+            <th>Description</th>
             <th>Genre</th>
             <th>Action</th>
         </tr>
         @foreach($books as $book)
             <tr>
-                <td> {{$book['id']}}</td>
-                <td> {{$book['title']}} </td>
+                <td style="width: 15%"> {{$book['title']}} </td>
                 <td> <img src="{{ asset("storage/images/".$book['image']) }}"  height="200px" width="140px"> </td>
-                <td> {{$book ['description']}}</td>
+                <td> {{$book['releaseyear']}}</td>
+                <td style="width: 33.3%" > {{$book ['description']}}</td>
                 <td> {{$book ['genre']}}</td>
                 <td>
                     <form action="{{ route('books.destroy',$book) }}" method="POST">

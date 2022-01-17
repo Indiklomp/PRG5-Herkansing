@@ -17,12 +17,16 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',[
+        'genres' =>Genre::all()
+    ]);
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
 
 Route::group(['middleware' => 'auth'], function() {Route::resource('/books', App\Http\Controllers\BookController::class);
 });

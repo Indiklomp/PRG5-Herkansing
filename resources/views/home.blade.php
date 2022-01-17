@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
  @section('content')
-<div class="container">
+<div class="container"C6W8glH0hrvmaoSybXJ05LOrBJiAqD9Oq5QCt4gm.jpg
+     style=" background:url('public/storage/images/C6W8glH0hrvmaoSybXJ05LOrBJiAqD9Oq5QCt4gm.jpg')">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
