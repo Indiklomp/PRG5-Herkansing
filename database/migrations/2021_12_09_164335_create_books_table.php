@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('genre');
+            $table->string('releaseyear');
             $table->string('image');
             $table->string('tag')->nullable();
         });

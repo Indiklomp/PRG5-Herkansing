@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('head')
 </head>
 <body>
     <div id="app">
@@ -58,6 +60,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ url('home') }}">
+                                        Home
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('profile') }}">
+                                        Profile
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -80,4 +90,7 @@
         </main>
     </div>
 </body>
+<div>
+    @yield('script')
+</div>
 </html>

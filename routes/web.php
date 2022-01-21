@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Book;
 use App\Http\controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +19,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome',[
-        'genres' =>Genre::all()
-    ]);
+    return view('welcome');
 });
 
 Auth::routes();
@@ -31,4 +31,8 @@ Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->
 Route::group(['middleware' => 'auth'], function() {Route::resource('/books', App\Http\Controllers\BookController::class);
 });
 
+Route::get('/profile', [UserController::class,'index']);
 
+Route::put('/profile/{username}',[UserController::class,'profileUpdate']);
+
+Route::post('/update-status', [BookController::class, 'updateStatus']);

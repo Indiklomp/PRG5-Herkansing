@@ -1,7 +1,17 @@
 
 @extends('layouts.app')
+@section('head')
+    {{--    Ajax loading in --}}
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+    {{--    Cloudflare Toggle   --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+@endsection
 
 @section('content')
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+
     <h1> {{$title}}</h1>
 
     <div>
@@ -23,6 +33,8 @@
                             <option value="{{$book['genre']}}"> {{ $book['genre'] }}</option>
                             @endforeach
                         </select>
+
+
 
 
                     </div>
@@ -61,6 +73,7 @@
             <th>release-year</th>
             <th>Description</th>
             <th>Genre</th>
+            <th>read</th>
             <th>Action</th>
         </tr>
         @foreach($books as $book)
@@ -70,6 +83,10 @@
                 <td> {{$book['releaseyear']}}</td>
                 <td style="width: 33.3%" > {{$book ['description']}}</td>
                 <td> {{$book ['genre']}}</td>
+                <td>
+                    <input type="checkbox" data-id="{{ $book->id }}" name="status"
+                           class="js-switch" {{ $book->status == 1 ? 'checked' : '' }}>
+                </td>
                 <td>
                     <form action="{{ route('books.destroy',$book) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('books.show',$book) }}">Show</a>
@@ -86,4 +103,14 @@
             </tr>
         @endforeach
     </table>
+@endsection
+
+@section('script')
+    <script>
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        elems.forEach(function(html) {
+            let newSlider = new Switchery(html,  { size: 'small' });
+        });
+    </script>
+    <script src="{{asset("js/slider.js")}}"></script>
 @endsection

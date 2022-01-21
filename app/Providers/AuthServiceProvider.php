@@ -28,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('books_create', function (User $user) { return $user->is_admin; } );
         Gate::define('books_edit', function (User $user) { return $user->is_admin; } );
         Gate::define('books_delete', function (User $user) { return $user->is_admin; } );
+        Gate::define('books_delete', function (User $user) { return $user->is_admin; } );
+
         //
     }
 }

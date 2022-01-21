@@ -14,9 +14,11 @@ class CreateBookUserTable extends Migration
     public function up()
     {
         Schema::create('book_user', function (Blueprint $table) {
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->primary(['user_id','book_id']);
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('book_id');
+            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

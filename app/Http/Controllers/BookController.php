@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\User;
 
 class BookController extends Controller
 {
@@ -121,4 +122,15 @@ class BookController extends Controller
             ->with('success', 'Book deleted successfully');
 
     }
+
+
+    public function updateStatus(Request $request)
+    {
+        $book = Book::findOrFail($request->book_id);
+        $book->status = $request->status;
+        $book->save();
+
+        return response()->json(['Status changed successfully!']);
+    }
+
 }
