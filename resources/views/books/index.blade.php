@@ -12,7 +12,7 @@
 @section('content')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
 
-    <h1> {{$title}}</h1>
+    <h1>My books</h1>
 
     <div >
         <div class="mx-auto float-right">
@@ -23,24 +23,24 @@
                                 <button class="btn btn-info" type="submit">Search</button>
                                         <span class="fas fa-search"></span>
                             </span>
-                        <input type="text" style="width: 33.3%"  name="term" placeholder="search or enter something" id="term">
+                        <input name="search" id="search" type="text" style="width: 33.3%"  name="term" placeholder="search or enter something" id="term">
                         <a href="{{ route('books.index') }}" class="mt-1"></a>
-
-
-
-                        <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semi-bold">
-                            <option value="genre" disabled selected> Genre</option>
-                            @foreach($books as $book)
-                            <option value="{{$book['genre']}}"> {{ $book['genre'] }}</option>
-                            @endforeach
-                        </select>
-
-
-
-
                     </div>
                 </form>
 
+        </div>
+        <div>
+            <form action="{{ route('books.index') }}" method="GET" >
+                <button class="btn btn-primary" type="submit">filter</button>
+            <select name="filter" id="filter" class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semi-bold">
+                    <option value="genre" disabled selected> Genre</option>
+                    <option value="Self-help"> Self-help </option>
+                    <option value="Popular science"> Popular science </option>
+                    <option value="Controversial literature"> Controversial literature </option>
+                    <option value="Non-fiction"> Non-fiction </option>
+
+            </select>
+            </form>
         </div>
     </div>
     <br>
@@ -113,5 +113,7 @@
             let newSlider = new Switchery(html,  { size: 'small' });
         });
     </script>
+
     <script src="{{asset("js/slider.js")}}"></script>
+    <script src="{{asset("js/button.js")}}"></script>
 @endsection

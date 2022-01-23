@@ -8,31 +8,28 @@ use App\Models\User;
 
 class BookController extends Controller
 {
-    public function index(Request $request)
-    {
-        $title = 'My books';
-
-        $books = book::where([
-            ['releaseyear', '!=', Null],
-            ['genre', '!=', Null],
-            ['title', '!=', Null],
-            ['description', '!=', Null],
-            [function ($query) use ($request) {
-                if (($term = $request->term)) {
-                    $query->orWhere('releaseyear', 'LIKE', '%' . $term . '%')->get();
-                    $query->orWhere('title', 'LIKE', '%' . $term . '%')->get();
-                    $query->orWhere('genre', 'LIKE', '%' . $term . '%')->get();
-                    $query->orWhere('description', 'LIKE', '%' . $term . '%')->get();
-                }
-            }]
-        ])
-            ->orderBy("id", "asc")
-            ->paginate(10);
-
-        return view('books.index', compact('title', 'books'));
+    public function index(Request $request){
 
 
+        if(request('search')){
+$search = request('search');
+$books = Book::where ('title', 'LIKE', '%' . $search . '%')
+    ->orWhere('genre', 'LIKE', '%' . $search . '%')
+    ->orWhere('description', 'LIKE', '%' . $search . '%')
+    ->orWhere('releaseyear', 'LIKE', '%' . $search . '%')
+    ->get();
+}
 
+elseif(request('filter')){
+$filter = request('filter');
+$books = Book::where ('genre', 'LIKE', '%' .  $filter . '%')
+    ->get();
+}
+
+else{
+    $books = Book::all();
+}
+    return view('books.index', compact( 'books'));
     }
 
 
@@ -133,5 +130,4 @@ class BookController extends Controller
 
         return response()->json(['recommended successfully!']);
     }
-
 }
