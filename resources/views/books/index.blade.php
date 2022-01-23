@@ -14,9 +14,10 @@
 
     <h1> {{$title}}</h1>
 
-    <div>
+    <div >
         <div class="mx-auto float-right">
                 <form action="{{ route('books.index') }}" method="GET" role="search">
+                    @csrf
                     <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="submit">Search</button>
@@ -73,7 +74,7 @@
             <th>release-year</th>
             <th>Description</th>
             <th>Genre</th>
-            <th>read</th>
+            <th>recommend</th>
             <th>Action</th>
         </tr>
         @foreach($books as $book)

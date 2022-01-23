@@ -36,7 +36,6 @@ class BookController extends Controller
     }
 
 
-
     public function show($id)
     {
         $books = book::find($id);
@@ -78,7 +77,6 @@ class BookController extends Controller
         $this->authorize('books_edit');
         return view('books.edit',compact('book'));
     }
-
 
     public function update(Request $request, Book $book)
     {
@@ -126,11 +124,14 @@ class BookController extends Controller
 
     public function updateStatus(Request $request)
     {
+        $this->authorize('books_status');
+
         $book = Book::findOrFail($request->book_id);
         $book->status = $request->status;
         $book->save();
 
-        return response()->json(['Status changed successfully!']);
+
+        return response()->json(['recommended successfully!']);
     }
 
 }

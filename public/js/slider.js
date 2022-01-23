@@ -12,7 +12,7 @@ $(function( $ ){
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/update-status",
+            url: "/recommend",
             data: {'status': status, 'book_id': bookId},
             success: function (data) {
         }

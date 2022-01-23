@@ -26,8 +26,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
-
 Route::group(['middleware' => 'auth'], function() {Route::resource('/books', App\Http\Controllers\BookController::class);
 });
 
@@ -35,4 +33,4 @@ Route::get('/profile', [UserController::class,'index']);
 
 Route::put('/profile/{username}',[UserController::class,'profileUpdate']);
 
-Route::post('/update-status', [BookController::class, 'updateStatus']);
+Route::post('/recommend', [BookController::class, 'updateStatus']);
